@@ -21,7 +21,7 @@ export default class _ScrollView extends Component {
         refreshing: false,
         listData
       });
-    }, 2000);
+    }, 1000);
   }
 
   render() {

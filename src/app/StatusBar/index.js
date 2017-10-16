@@ -7,6 +7,7 @@ export default class _StatusBar extends Component {
     animated: true,
     barStyle: 'dark-content',
     hidden: false,
+    networkActivityIndicatorVisible: true,
     showHiddenTransition: 'fade'
   };
 
@@ -37,11 +38,19 @@ export default class _StatusBar extends Component {
     })
   };
 
+  _toggleNetworkActivityIndicatorVisible = () => {
+    let networkActivityIndicatorVisible = !this.state.networkActivityIndicatorVisible;
+    this.setState({
+      networkActivityIndicatorVisible
+    });
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar animated={this.state.animated} barStyle={this.state.barStyle}
-                   hidden={this.state.hidden} showHideTransition={this.state.showHiddenTransition} />
+        <StatusBar animated={this.state.animated} barStyle={this.state.barStyle} hidden={this.state.hidden}
+                   networkActivityIndicatorVisible={this.state.networkActivityIndicatorVisible}
+                   showHideTransition={this.state.showHiddenTransition} />
         <View style={styles.row}>
           <Text>动画过渡</Text>
           <Switch value={this.state.animated} onValueChange={this._toggleAnimated} />
@@ -63,6 +72,10 @@ export default class _StatusBar extends Component {
             <Picker.Item label="fade" value="fade" />
             <Picker.Item label="slide" value="slide" />
           </Picker>
+        </View>
+        <View style={styles.row}>
+          <Text>网络请求标识</Text>
+          <Switch value={this.state.networkActivityIndicatorVisible} onValueChange={this._toggleNetworkActivityIndicatorVisible} />
         </View>
       </View>
     )

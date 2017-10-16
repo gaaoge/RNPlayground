@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, StatusBar, Button, Text, Picker, Switch, TextInput } from 'react-native';
+import { StyleSheet, View, StatusBar, Button, Text, Picker, Switch, TextInput, Platform } from 'react-native';
 
 export default class _StatusBar extends Component {
 
@@ -83,26 +83,30 @@ export default class _StatusBar extends Component {
           <Text>状态栏隐藏</Text>
           <Switch value={this.state.hidden} onValueChange={this._toggleHidden} />
         </View>
-        <View style={styles.row}>
-          <Text>状态栏过渡动画(ios)</Text>
-          <Picker style={styles.picker} selectedValue={this.state.showHiddenTransition}
-                  onValueChange={this._selectShowHiddenTransition}>
-            <Picker.Item label="fade" value="fade" />
-            <Picker.Item label="slide" value="slide" />
-          </Picker>
-        </View>
-        <View style={styles.row}>
-          <Text>网络请求标识(ios)</Text>
-          <Switch value={this.state.networkActivityIndicatorVisible}
-                  onValueChange={this._toggleNetworkActivityIndicatorVisible} />
-        </View>
-        <View style={styles.row}>
-          <Text>状态栏背景颜色(android)</Text>
-          <TextInput style={styles.input} placeholder="颜色值"
-                     value={this.state._backgroundColor}
-                     onChangeText={this._onChangeBackgroundColor}
-                     onEndEditing={this._onEndChangeBackgroundColor} />
-        </View>
+        {Platform.select({
+          ios: [
+            <View style={styles.row} key="ios1">
+              <Text>状态栏过渡动画(ios)</Text>
+              <Picker style={styles.picker} selectedValue={this.state.showHiddenTransition}
+                      onValueChange={this._selectShowHiddenTransition}>
+                <Picker.Item label="fade" value="fade" />
+                <Picker.Item label="slide" value="slide" />
+              </Picker>
+            </View>,
+            <View style={styles.row} key="ios2">
+              <Text>网络请求标识(ios)</Text>
+              <Switch value={this.state.networkActivityIndicatorVisible}
+                      onValueChange={this._toggleNetworkActivityIndicatorVisible} />
+            </View>
+          ],
+          android: <View style={styles.row}>
+            <Text>状态栏背景颜色(android)</Text>
+            <TextInput style={styles.input} placeholder="颜色值"
+                       value={this.state._backgroundColor}
+                       onChangeText={this._onChangeBackgroundColor}
+                       onEndEditing={this._onEndChangeBackgroundColor} />
+          </View>
+        })}
       </View>
     )
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, StatusBar, Button, Text, Picker, Switch } from 'react-native';
+import { StyleSheet, View, StatusBar, Button, Text, Picker, Switch, TextInput } from 'react-native';
 
 export default class _StatusBar extends Component {
 
@@ -8,7 +8,9 @@ export default class _StatusBar extends Component {
     barStyle: 'dark-content',
     hidden: false,
     networkActivityIndicatorVisible: true,
-    showHiddenTransition: 'fade'
+    showHiddenTransition: 'fade',
+    backgroundColor: '#fff',
+    _backgroundColor: '#fff'
   };
 
 
@@ -22,7 +24,7 @@ export default class _StatusBar extends Component {
   _selectBarStyle = (barStyle) => {
     this.setState({
       barStyle
-    })
+    });
   };
 
   _toggleHidden = () => {
@@ -35,7 +37,7 @@ export default class _StatusBar extends Component {
   _selectShowHiddenTransition = (showHiddenTransition) => {
     this.setState({
       showHiddenTransition
-    })
+    });
   };
 
   _toggleNetworkActivityIndicatorVisible = () => {
@@ -45,19 +47,34 @@ export default class _StatusBar extends Component {
     });
   };
 
+  _onChangeBackgroundColor = (_backgroundColor) => {
+    this.setState({
+      _backgroundColor
+    });
+  };
+
+  _onEndChangeBackgroundColor = () => {
+    let backgroundColor = this.state._backgroundColor;
+    this.setState({
+      backgroundColor
+    });
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <StatusBar animated={this.state.animated} barStyle={this.state.barStyle} hidden={this.state.hidden}
                    networkActivityIndicatorVisible={this.state.networkActivityIndicatorVisible}
-                   showHideTransition={this.state.showHiddenTransition} />
+                   showHideTransition={this.state.showHiddenTransition}
+                   backgroundColor={this.state.backgroundColor} />
         <View style={styles.row}>
           <Text>动画过渡</Text>
           <Switch value={this.state.animated} onValueChange={this._toggleAnimated} />
         </View>
         <View style={styles.row}>
           <Text>状态栏样式</Text>
-          <Picker style={styles.picker} selectedValue={this.state.barStyle} onValueChange={this._selectBarStyle}>
+          <Picker style={styles.picker} selectedValue={this.state.barStyle}
+                  onValueChange={this._selectBarStyle}>
             <Picker.Item label="dark-content" value="dark-content" />
             <Picker.Item label="light-content" value="light-content" />
           </Picker>
@@ -67,15 +84,24 @@ export default class _StatusBar extends Component {
           <Switch value={this.state.hidden} onValueChange={this._toggleHidden} />
         </View>
         <View style={styles.row}>
-          <Text>状态栏过渡动画</Text>
-          <Picker style={styles.picker} selectedValue={this.state.showHiddenTransition} onValueChange={this._selectShowHiddenTransition}>
+          <Text>状态栏过渡动画(ios)</Text>
+          <Picker style={styles.picker} selectedValue={this.state.showHiddenTransition}
+                  onValueChange={this._selectShowHiddenTransition}>
             <Picker.Item label="fade" value="fade" />
             <Picker.Item label="slide" value="slide" />
           </Picker>
         </View>
         <View style={styles.row}>
-          <Text>网络请求标识</Text>
-          <Switch value={this.state.networkActivityIndicatorVisible} onValueChange={this._toggleNetworkActivityIndicatorVisible} />
+          <Text>网络请求标识(ios)</Text>
+          <Switch value={this.state.networkActivityIndicatorVisible}
+                  onValueChange={this._toggleNetworkActivityIndicatorVisible} />
+        </View>
+        <View style={styles.row}>
+          <Text>状态栏背景颜色(android)</Text>
+          <TextInput style={styles.input} placeholder="颜色值"
+                     value={this.state._backgroundColor}
+                     onChangeText={this._onChangeBackgroundColor}
+                     onEndEditing={this._onEndChangeBackgroundColor} />
         </View>
       </View>
     )
@@ -96,5 +122,9 @@ const styles = StyleSheet.create({
   },
   picker: {
     width: 150
+  },
+  input: {
+    width: 100,
+    textAlign: 'right'
   }
 });

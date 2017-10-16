@@ -12,7 +12,7 @@ export default class Networking extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.getMovies();
-    }, 2000);
+    }, 1000);
   }
 
   async getMovies() {
@@ -32,8 +32,8 @@ export default class Networking extends Component {
     if (!data) {
       return (
         <View style={styles.container}>
-          <Text style={{marginBottom: 20}}>正在请求数据...</Text>
-          <ActivityIndicator size="large"/>
+          <Text style={{ marginBottom: 20 }}>正在请求数据...</Text>
+          <ActivityIndicator size="large" />
         </View>
       );
     }

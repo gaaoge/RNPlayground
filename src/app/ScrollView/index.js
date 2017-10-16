@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, Image, ScrollView } from 'react-native';
 
-export default class ScrollView1 extends Component {
+export default class _ScrollView extends Component {
 
   render() {
 
     var images = [];
     for (let i = 0; i < 10; i++) {
-      images.push(<Image key={i} style={styles.image} source={require('../../../resource/assets/logo.png')}/>);
+      images.push(<Image key={i} style={styles.image} source={require('../../../resource/assets/logo.png')} />);
     }
 
     return (

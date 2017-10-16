@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, Image, View, FlatList, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, Image, View, FlatList, TouchableOpacity } from 'react-native';
 import { routes } from '../router';
 
 export default class Home extends Component {
@@ -28,11 +28,11 @@ export default class Home extends Component {
     return (
       <View>
         <View style={styles.header}>
-          <Image style={styles.logo} source={require('../../resource/assets/logo.png')}/>
+          <Image style={styles.logo} source={require('../../resource/assets/logo.png')} />
           <Text style={styles.title}>React Native Playground</Text>
           <Text style={styles.sign}>by GG</Text>
         </View>
-        <FlatList data={this._listData} renderItem={this._renderItem}/>
+        <FlatList data={this._listData} renderItem={this._renderItem} />
       </View>
     );
   }

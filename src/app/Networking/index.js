@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
-import { StyleSheet, ActivityIndicator, Text, View } from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, ActivityIndicator, Text, View } from 'react-native'
 
 export default class Networking extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       data: null
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     setTimeout(() => {
-      this.getMovies();
-    }, 1000);
+      this.getMovies()
+    }, 1000)
   }
 
-  async getMovies() {
+  async getMovies () {
     try {
-      let response = await fetch('https://facebook.github.io/react-native/movies.json');
-      let data = await response.json();
+      let response = await fetch('https://facebook.github.io/react-native/movies.json')
+      let data = await response.json()
       this.setState({
         data: data
       })
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   }
 
-  render() {
-    let data = this.state.data;
+  render () {
+    let data = this.state.data
     if (!data) {
       return (
         <View style={styles.container}>
-          <Text style={{ marginBottom: 20 }}>正在请求数据...</Text>
+          <Text style={{marginBottom: 20}}>正在请求数据...</Text>
           <ActivityIndicator size="large" />
         </View>
-      );
+      )
     }
 
     return (
@@ -44,8 +44,8 @@ export default class Networking extends Component {
         <Text style={styles.desc}>{data.description}</Text>
         <View style={styles.table}>
           <View style={[styles.tableHeader, styles.tableItem]}>
-            <Text style={{ fontWeight: 'bold' }}>movie name</Text>
-            <Text style={{ fontWeight: 'bold' }}>year</Text>
+            <Text style={{fontWeight: 'bold'}}>movie name</Text>
+            <Text style={{fontWeight: 'bold'}}>year</Text>
           </View>
           {data.movies.map((item, index) => {
             return (
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center'
   }
-});
+})

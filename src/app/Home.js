@@ -1,30 +1,30 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, Image, View, FlatList, TouchableOpacity } from 'react-native';
-import { routes } from '../router';
+import React, { Component } from 'react'
+import { StyleSheet, Text, Image, View, FlatList, TouchableOpacity } from 'react-native'
+import { routes } from '../router'
 
 export default class Home extends Component {
 
   _listData = Object.keys(routes)
     .filter(item => item !== 'Home')
     .map((item) => {
-      return { key: item }
-    });
+      return {key: item}
+    })
 
   _onPressItem = (key) => {
     return () => {
-      this.props.navigation.navigate(key);
+      this.props.navigation.navigate(key)
     }
-  };
+  }
 
-  _renderItem = ({ item }) => (
+  _renderItem = ({item}) => (
     <TouchableOpacity onPress={this._onPressItem(item.key)}>
       <View style={styles.item}>
         <Text style={styles.itemName}>{item.key}</Text>
       </View>
     </TouchableOpacity>
-  );
+  )
 
-  render() {
+  render () {
     return (
       <View>
         <View style={styles.header}>
@@ -34,7 +34,7 @@ export default class Home extends Component {
         </View>
         <FlatList data={this._listData} renderItem={this._renderItem} />
       </View>
-    );
+    )
   }
 }
 
@@ -55,11 +55,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 15,
     bottom: 15,
-    color: "#fff",
+    color: '#fff',
     fontWeight: 'bold'
   },
   title: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 18,
     fontWeight: 'bold'
   },
@@ -75,4 +75,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16
   }
-});
+})

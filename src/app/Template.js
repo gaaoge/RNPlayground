@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, View } from 'react-native'
 
 export default class Template extends Component {
 
-  state = {
+  state = {}
 
-  };
-
-  render() {
+  render () {
     return (
       <View style={styles.container}>
 
@@ -19,7 +17,7 @@ export default class Template extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent:'center',
+    justifyContent: 'center',
     alignItems: 'center'
   }
-});
+})

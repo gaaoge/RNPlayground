@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, StatusBar, Button, Text, Picker, Switch, TextInput, Platform } from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, View, StatusBar, Button, Text, Picker, Switch, TextInput, Platform } from 'react-native'
 
 export default class _StatusBar extends Component {
 
@@ -11,56 +11,55 @@ export default class _StatusBar extends Component {
     showHiddenTransition: 'fade',
     backgroundColor: '#fff',
     _backgroundColor: '#fff'
-  };
-
+  }
 
   _toggleAnimated = () => {
-    let animated = !this.state.animated;
+    let animated = !this.state.animated
     this.setState({
       animated
-    });
-  };
+    })
+  }
 
   _selectBarStyle = (barStyle) => {
     this.setState({
       barStyle
-    });
-  };
+    })
+  }
 
   _toggleHidden = () => {
-    let hidden = !this.state.hidden;
+    let hidden = !this.state.hidden
     this.setState({
       hidden
-    });
-  };
+    })
+  }
 
   _selectShowHiddenTransition = (showHiddenTransition) => {
     this.setState({
       showHiddenTransition
-    });
-  };
+    })
+  }
 
   _toggleNetworkActivityIndicatorVisible = () => {
-    let networkActivityIndicatorVisible = !this.state.networkActivityIndicatorVisible;
+    let networkActivityIndicatorVisible = !this.state.networkActivityIndicatorVisible
     this.setState({
       networkActivityIndicatorVisible
-    });
-  };
+    })
+  }
 
   _onChangeBackgroundColor = (_backgroundColor) => {
     this.setState({
       _backgroundColor
-    });
-  };
+    })
+  }
 
   _onEndChangeBackgroundColor = () => {
-    let backgroundColor = this.state._backgroundColor;
+    let backgroundColor = this.state._backgroundColor
     this.setState({
       backgroundColor
-    });
-  };
+    })
+  }
 
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <StatusBar animated={this.state.animated} barStyle={this.state.barStyle} hidden={this.state.hidden}
@@ -131,4 +130,4 @@ const styles = StyleSheet.create({
     width: 100,
     textAlign: 'right'
   }
-});
+})

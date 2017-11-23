@@ -33,7 +33,7 @@ export default class Networking extends Component {
       return (
         <View style={styles.container}>
           <Text style={{marginBottom: 20}}>正在请求数据...</Text>
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size='large' />
         </View>
       )
     }
